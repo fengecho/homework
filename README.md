@@ -41,13 +41,29 @@ je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_20
 A partir des 5 labels, j'ai écrit [write_tomate_image.py](Tomato allergies/Assignment 1/training/construire_dataset/write_tomate_image.py), ce fichier extraire les noms des images, leur bouding boxes et leur labels dans une autre fichier `.json` à condition que ces image contiennent un ou plusieurs labels de ces 5 labels. Après, on obtient [tomate_image.json](Tomato allergies/Assignment 1/training/construire_dataset/tomate_image.json), un fichier qui contient tous les informations des images qui ont tomate dedans.
 
 2. Extraire les images de tomate et construire fichiers .xml
-Le fichier [extraire_image.py](Tomato allergies/Assignment 1/training/construire_dataset/extraire_image.py) sert à extraire les images de tomate depuis le répertoire **assignment_imgs** au répertoire **tomate_images_set**.
+Le fichier [extraire_image.py](Tomato allergies/Assignment 1/training/construire_dataset/extraire_image.py) sert à extraire les images de tomate depuis le répertoire **assignment_imgs** au répertoire **tomate_images_set**. Les images extraites sont au total 500.
 
 Avant de passer au dernier étape pour contruire **.record** qui est le format de dataset pour Tensorflow, nous devons générer les xml fichiers, ce fichier **.XML** contient le nom d'image, les boundingboxes et l'information d'image, voici un exemple de **.xml**  
 
   <p>
   <img src="Tomato allergies/Assignment 1/images/xml.PNG" alt="xml exemple" height="300px"/>
   </p> 
+  
+  Le fichier [generate_xml.py](Tomato allergies/Assignment 1/training/construire_dataset/generate_xml.py) prend [tomate_image.json](Tomato allergies/Assignment 1/training/construire_dataset/tomate_image.json) comme entrée, les **.xml** seront enregistrés dans le répertoire indiqué dans le code(dans notre cas, le fichier **annotation**).
+  
+  3. Séparation des .xml en partie **Training** et partie **Validation**
+  Le fichier [train_test_split.py](Tomato allergies/Assignment 1/training/construire_dataset/train_test_split.py) est crée pour trier au harard les .xml en training, validation et test(ou seulement training et validation). Dans notre cas, comme la quantité d'images est seulement 500, donc j'ai séparé 441 images pour **Training**, 49 images pour **Validation** et 10 images pour le **Test** , il sont stocké dans le répertoire [train_val](Tomato allergies/Assignment 1/training/construire_dataset/train_val)
+  
+  4. Transformer les fichiers **.xml** au fichier **.csv** et générer les fichiers **.record**
+  Le fichier [xml_to_csv.py](Tomato allergies/Assignment 1/training/construire_dataset/xml_to_csv.py) transforme les fichier **.xml** au fichiers **.csv**, puis on utilise [generate_tfrecord.py](Tomato allergies/Assignment 1/training/construire_dataset/generate_tfrecord.py) pour générer les fichier **.record**, les lignes de commande sont comme suivante:
+  
+  ```shell
+  $ python generate_tfrecord.py --csv_input=data/train_labels.csv  --output_path=data/train.record
+  $ python generate_tfrecord.py --csv_input=data/test_labels.csv  --output_path=data/test.record
+  ```
+  
+  5. 
+  
  
  
 
