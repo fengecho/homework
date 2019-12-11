@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<annotation>
+	<folder>images</folder>
+	<filename>f00dac861a47a02fe0aa2efd9e53d54f.jpeg</filename>
+	<path>tomate_images_set/f00dac861a47a02fe0aa2efd9e53d54f.jpeg</path>
+	<source>Unknown</source>
+	<size>
+		<width>600</width>
+		<height>600</height>
+		<depth>3</depth>
+		<segmented>0</segmented>
+	</size>
+	<object>
+		<name>tomate</name>
+		<pose>unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>99</xmin>
+			<ymin>210</ymin>
+			<xmax>316</xmax>
+			<ymax>393</ymax>
+		</bndbox>
+	</object>
+</annotation>

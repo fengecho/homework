@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<annotation>
+	<folder>images</folder>
+	<filename>285886_2018_04_20_10_26_56_533443.jpg</filename>
+	<path>tomate_images_set/285886_2018_04_20_10_26_56_533443.jpg</path>
+	<source>Unknown</source>
+	<size>
+		<width>600</width>
+		<height>600</height>
+		<depth>3</depth>
+		<segmented>0</segmented>
+	</size>
+	<object>
+		<name>tomate</name>
+		<pose>unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>293</xmin>
+			<ymin>58</ymin>
+			<xmax>557</xmax>
+			<ymax>316</ymax>
+		</bndbox>
+	</object>
+</annotation>

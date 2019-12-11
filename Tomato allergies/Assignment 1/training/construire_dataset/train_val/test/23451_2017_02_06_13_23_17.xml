@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<annotation>
+	<folder>images</folder>
+	<filename>23451_2017_02_06_13_23_17.jpg</filename>
+	<path>tomate_images_set/23451_2017_02_06_13_23_17.jpg</path>
+	<source>Unknown</source>
+	<size>
+		<width>600</width>
+		<height>600</height>
+		<depth>3</depth>
+		<segmented>0</segmented>
+	</size>
+	<object>
+		<name>tomate</name>
+		<pose>unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>210</xmin>
+			<ymin>176</ymin>
+			<xmax>305</xmax>
+			<ymax>249</ymax>
+		</bndbox>
+	</object>
+</annotation>
