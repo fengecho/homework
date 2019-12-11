@@ -37,11 +37,17 @@ je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_20
 - 4e884654d97603dedb7e3bd8991335d0_lab,Tomates (entières),Tomatoe whole
 - f3c12eecb7abc706b032ad9a387e6f01_lab,Tomate à la provençale,Stuffed Tomatoes
 - e306505b150e000f5e1b4f377ad688a0_lab,Tomate farcie,Stuffed tomatoes
+
 A partir des 5 labels, j'ai écrit [write_tomate_image.py](Tomato allergies/Assignment 1/training/construire_dataset/write_tomate_image.py), ce fichier extraire les noms des images, leur bouding boxes et leur labels dans une autre fichier `.json` à condition que ces image contiennent un ou plusieurs labels de ces 5 labels. Après, on obtient [tomate_image.json](Tomato allergies/Assignment 1/training/construire_dataset/tomate_image.json), un fichier qui contient tous les informations des images qui ont tomate dedans.
 
 2. Extraire les images de tomate et construire fichiers .xml
-Le fichier 
+Le fichier [extraire_image.py](Tomato allergies/Assignment 1/training/construire_dataset/extraire_image.py) sert à extraire les images de tomate depuis le répertoire **assignment_imgs** au répertoire **tomate_images_set**.
 
+Avant de passer au dernier étape pour contruire **.record** qui est le format de dataset pour Tensorflow, nous devons générer les xml fichiers, ce fichier **.XML** contient le nom d'image, les boundingboxes et l'information d'image, voici un exemple de **.xml**  
+
+  <p>
+  <img src="Tomato allergies/Assignment 1/images/xml.PNG" alt="xml exemple" height="300px"/>
+  </p> 
  
  
 
