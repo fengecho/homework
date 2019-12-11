@@ -46,7 +46,7 @@ Le fichier [extraire_image.py](Tomato allergies/Assignment 1/training/construire
 Avant de passer au dernier étape pour contruire **.record** qui est le format de dataset pour Tensorflow, nous devons générer les xml fichiers, ce fichier **.XML** contient le nom d'image, les boundingboxes et l'information d'image, voici un exemple de **.xml**  
 
   <p>
-  <img src="Tomato allergies/Assignment 1/images/xml.PNG" alt="xml exemple" height="300px"/>
+  <img src="Tomato allergies/Assignment 1/images/xml.PNG" alt="xml exemple" height="450px"/>
   </p> 
   
   Le fichier [generate_xml.py](Tomato allergies/Assignment 1/training/construire_dataset/generate_xml.py) prend [tomate_image.json](Tomato allergies/Assignment 1/training/construire_dataset/tomate_image.json) comme entrée, les **.xml** seront enregistrés dans le répertoire indiqué dans le code(dans notre cas, le fichier **annotation**).
