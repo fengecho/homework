@@ -27,5 +27,9 @@ je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_20
 ### Training 
 
 1. Extraire les donnée et préparer le dataset et les annotations
-Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomate ou sans tomate)
+ Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomates ou sans tomates). les 2 fichier sont également fournis:
+ - **img_annotations.json** : il contient les informations des 3000 images dans le dataset, y compris noms des images, leur bounding boxes et noms des différents aliments qui sont contournés par leur bounding boxes.
+ - **label_mapping.sv**: label ID des aliments et son nom correspondant.
+ 
+ 
 
