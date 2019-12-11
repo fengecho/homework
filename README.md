@@ -18,3 +18,14 @@ pour utiliser les codes, il suiffit de télécharger les 3 fichiers du répertoi
 
 ## Home assignment - Tomato allergies
 
+Ce test issu du sujet [Home assignment - Tomato allergies - Assignment # 1](https://github.com/Foodvisor/home-assignment#assignment--1)
+je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_2018_01_28](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz). Le model est entraîné sur AWS EC2 avec la carte graphique Tesla K80. Il contient 2 parties:
+- **Training**
+- **Test**
+
+
+### Training 
+
+1. Extraire les donnée et préparer le dataset et les annotations
+Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomate ou sans tomate)
+
