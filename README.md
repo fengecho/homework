@@ -117,6 +117,38 @@ tensorboard --logdir eval_logs/ --port 6007
 
 #visualiser l'entraînement et la validation en même temps
 tensorboard --logdir .
+```
  
  
+###Test
+Pendant l'entraînement, Systeme enregistre plusieurs fois les fichiers de checkpoint, ils sont de type:
+- graph.pbtxt
+- model.ckpt-17538.data-00000-of-00001
+- model.ckpt-17538.index
+- model.ckpt-17538.meta
+  ...
+
+Pour obtenir un des checkpoint qu'on veut, il suffit de exécuter le fichier `export_inference_graph.py`, il va enregistrer le checkpoint souhaiter et générer un **frozen graph**
+
+1. Tester avec fonction has_tomatoes(image_path) 
+Mettre ensemble le fichier [run_tomatoes_detection.py](Tomato_allergies/Assignment_1/run_tomatoes_detection.py), [tomatoes_detection.py](Tomato_allergies/Assignment_1/tomatoes_detection.py) et le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported)  dans un répertoire. Les models entraînés sont dans le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported).
+Pour l'éxecuter, vous devez avoir préablement **sys**, **numpy**, **cv2**, **tesorflow** dans votre environement Python.
+Dans le fichier [tomatoes_detection.py](Tomato_allergies/Assignment_1/tomatoes_detection.py), vous trouver la fonction has_tomatoes(), aussi un seuil(par défault à 0.5) à scores pour filtrer les résultats. 
+Dans le fichier **Assignment_1**, remplir le image_path dans le fichier [run_tomatoes_detection.py](Tomato_allergies/Assignment_1/run_tomatoes_detection.py), puis taper command python run_tomatoes_detection.py au **terminal/commmand window**
+Résultat: Si il a détecté les tomates dans l'image, il va retourner "True, there is/are tomatoes", sinon il va retourner "No, there is not tomato".
+
+
+2. Tester avec le fichier [detect_image.py](Tomato_allergies/Assignment_1/detect_image.py)
+Ce fichier prendre le chemin d'un répertoire qui contient les images à detecter, il sort les images détectés avec les boundingboxes dessinés au dessus dans un répertoire [output_images](Tomato_allergies/Assignment_1/output_images).
+Pour l'éxecuter, vous devez avoir préablement **sys**, **numpy**, **cv2**, **tesorflow** dans votre environement Python, Object Detection API dois être paramétré dans le PYTHONPATH, pour paramétrer le PYTHONPATH:
+
+```
+#From models/research 
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+```
+Placer ensemble le répertoire [test_images](Tomato_allergies/Assignment_1/test_images) et [detect_image.py](Tomato_allergies/Assignment_1/detect_image.py) dans un répertoire, puis taper le commande `python detect_image.py test_images`
+Voici un exemple de résultat:
+  <p>
+  <img src="Tomato_allergies/Assignment_1/output_images/5114115130b27c803a2d706510098bff.jpeg" alt="exemple" height="450px"/>
+  </p> 
 
