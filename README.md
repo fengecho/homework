@@ -1,8 +1,11 @@
 # homework
 
 Ce test contient 2 parties:
+
   [1. Test programmation: Coding assignment](#coding-assignment)
-  2. Projet sur vision par ordinateur: Tomato allergies
+  
+  [2. Projet sur vision par ordinateur: Tomato allergies](#home-assignment---tomato-allergies)
+  
 ## Coding assignment
 
 Ce test issu de [Coding assignment - Food database](https://github.com/Foodvisor/coding-assignment). 
