@@ -31,7 +31,7 @@ je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_20
 
 1. Extraire les donnée
 
-Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomates ou sans tomates). Les 2 fichier sont également fournis:
+Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomates ou sans tomates). Les 2 fichiers sont également fournis:
  - **img_annotations.json** : il contient les informations des 3000 images dans le dataset, y compris noms des images, leur bounding boxes et noms des différents aliments qui sont contournés par leur bounding boxes.
  - **label_mapping.sv** : label ID des aliments et son nom correspondant.
  
@@ -72,7 +72,7 @@ On obtient ainsi `train.record` et `validation.record`
   
 5. Installation de **Tensorflow object-detection API**, vous trouvez les instruction à installer ce API en liens suivant [Tensorflow object-detectuib API](https://github.com/tensorflow/models/tree/6518c1c7711ef1fdbe925b3c5c71e62910374e3e/research/object_detection)
   
-6. Télécharger le model pre-traind **ssd_mobilenet_v1_coco_2018_01_28** dans le liens http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz, Décompresser ce model dan un nouveau répertoire nommé **checkpoint** (path: `models/research/object_detection/checkpoint` ), ***le répertoire **models** est le répertoire principal de Object Detection API***, on crée un répertoire nommée par exemple **tomate_training** (path: `models/research/object_detection/tomate_training`  ), placer `train.record` et `validation.record` dans un répertoire sous `models/research/object_detection/tomate_training/data`, on copie `object_detection/samples/configs/ssd_mobilenet_v1_pets.config` `object_detection/tomate_training/ssd_mobilenet/ssd_mobilenet_v1.config`, créer [label_map.pbtxt](Tomato_allergies/Assignment_1/training/label.pbtxt) sous `models/research/object_detection/tomate_training/data/`, écrire le contenu suivant:
+6. Télécharger le model pre-traind **ssd_mobilenet_v1_coco_2018_01_28** dans le liens http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz, Décompresser ce model dan un nouveau répertoire nommé **checkpoint** (path: `models/research/object_detection/checkpoint` ), ***le répertoire **models** est le répertoire principal de Object Detection API***, on crée un répertoire nommée par exemple **tomate_training** (path: `models/research/object_detection/tomate_training`  ), placer `train.record` et `validation.record` dans un répertoire sous `models/research/object_detection/tomate_training/data`, on copie `object_detection/samples/configs/ssd_mobilenet_v1_pets.config` `object_detection/tomate_training/ssd_mobilenet/ssd_mobilenet_v1.config`, créer `label_map.pbtxt`, écrire le contenu suivant:
   
   ```
   item {
