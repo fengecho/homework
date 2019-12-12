@@ -27,11 +27,11 @@ je l'ai fait en **Tensorflow 1.14**, pre-trained model [ssd_mobilenet_v1_coco_20
 ### Training 
 
 1. Extraire les donnée
- Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomates ou sans tomates). les 2 fichier sont également fournis:
+Le dataset fourni par le auteur est au total 3000 images, ils sont mélangés(images avec tomates ou sans tomates). les 2 fichier sont également fournis:
  - **img_annotations.json** : il contient les informations des 3000 images dans le dataset, y compris noms des images, leur bounding boxes et noms des différents aliments qui sont contournés par leur bounding boxes.
  - **label_mapping.sv** : label ID des aliments et son nom correspondant.
  
- Comme nous voulons détecter les tomates entiers ou en morceau(pas le jus), nous devons trouver les labels qui représent les tomates entiers ou en morceau. En faisant la recherche j'ai trouvé 5 labels qui représentent les tomates entiers ou en morceau, Ils sont:
+Comme nous voulons détecter les tomates entiers ou en morceau(pas le jus), nous devons trouver les labels qui représent les tomates entiers ou en morceau. En faisant la recherche j'ai trouvé 5 labels qui représentent les tomates entiers ou en morceau, Ils sont:
 - 939030726152341c154ba28629341da6_lab,Tomates (coupées),Tomatoes
 - 9f2c42629209f86b2d5fbe152eb54803_lab,Tomates cerises,Cherry tomatoes
 - 4e884654d97603dedb7e3bd8991335d0_lab,Tomates (entières),Tomatoe whole
@@ -49,21 +49,50 @@ Avant de passer au dernier étape pour contruire **.record** qui est le format d
   <img src="Tomato_allergies/Assignment_1/images/xml.PNG" alt="xml exemple" height="450px"/>
   </p> 
   
-  Le fichier [generate_xml.py](Tomato_allergies/Assignment_1/training/construire_dataset/generate_xml.py) prend [tomate_image.json](Tomato_allergies/Assignment_1/training/construire_dataset/tomate_image.json) comme entrée, les **.xml** seront enregistrés dans le répertoire indiqué dans le code(dans notre cas, le fichier **annotation**).
+Le fichier [generate_xml.py](Tomato_allergies/Assignment_1/training/construire_dataset/generate_xml.py) prend [tomate_image.json](Tomato_allergies/Assignment_1/training/construire_dataset/tomate_image.json) comme entrée, les **.xml** seront enregistrés dans le répertoire indiqué dans le code(dans notre cas, le fichier **annotation**).
   
-  3. Séparation des .xml en partie **Training** et partie **Validation**
-  Le fichier [train_test_split.py](Tomato_allergies/Assignment_1/training/construire_dataset/train_test_split.py) est crée pour trier au harard les .xml en training, validation et test(ou seulement training et validation). Dans notre cas, comme la quantité d'images est seulement 500, donc j'ai séparé 441 images pour **Training**, 49 images pour **Validation** et 10 images pour le **Test** , il sont stocké dans le répertoire [train_val](Tomato_allergies/Assignment_1/training/construire_dataset/train_val)
+3. Séparation des .xml en partie **Training** et partie **Validation**
+Le fichier [train_test_split.py](Tomato_allergies/Assignment_1/training/construire_dataset/train_test_split.py) est crée pour trier au harard les .xml en training, validation et test(ou seulement training et validation). Dans notre cas, comme la quantité d'images est seulement 500, donc j'ai séparé 441 images pour **Training**, 49 images pour **Validation** et 10 images pour le **Test** , il sont stocké dans le répertoire [train_val](Tomato_allergies/Assignment_1/training/construire_dataset/train_val)
   
-  4. Transformer les fichiers **.xml** au fichier **.csv** et générer les fichiers **.record**
-  Le fichier [xml_to_csv.py](Tomato_allergies/Assignment_1/training/construire_dataset/xml_to_csv.py) transforme les fichier **.xml** au fichiers **.csv**, puis on utilise [generate_tfrecord.py](Tomato_allergies/Assignment_1/training/construire_dataset/generate_tfrecord.py) pour générer les fichier **.record**, les lignes de commande sont comme suivante:
+4. Transformer les fichiers **.xml** au fichier **.csv** et générer les fichiers **.record**
+Le fichier [xml_to_csv.py](Tomato_allergies/Assignment_1/training/construire_dataset/xml_to_csv.py) transforme les fichier **.xml** au fichiers **.csv**, puis on utilise [generate_tfrecord.py](Tomato_allergies/Assignment_1/training/construire_dataset/generate_tfrecord.py) pour générer les fichier **.record**, les lignes de commande sont comme suivante:
   
   ```shell
   $ python generate_tfrecord.py --csv_input=data/train_labels.csv  --output_path=data/train.record
   $ python generate_tfrecord.py --csv_input=data/test_labels.csv  --output_path=data/test.record
   ```
+On obtient ainsi `train.record` et `validation.record`
   
-  5. 
+5. Installation de **Tensorflow object-detection API**, vous trouvez les instruction à installer ce API en liens suivant [Tensorflow object-detectuib API](https://github.com/tensorflow/models/tree/6518c1c7711ef1fdbe925b3c5c71e62910374e3e/research/object_detection)
   
+6. Télécharger le model pre-traind **ssd_mobilenet_v1_coco_2018_01_28** dans le liens http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz, Décompresser ce model dan un nouveau répertoire nommé **checkpoint** (path: `models/research/object_detection/checkpoint` ), ***le répertoire **models** est le répertoire principal de Object Detection API***
+On crée un répertoire nommée par exemple **tomate_training** (path: `models/research/object_detection/tomate_training`  ), placer `train.record` et `validation.record` dans un répertoire sous `models/research/object_detection/tomate_training/data`
+On copie `object_detection/samples/configs/ssd_mobilenet_v1_pets.config` `object_detection/tomate_training/ssd_mobilenet/ssd_mobilenet_v1.config`
+Créer [label_map.pbtxt](Tomato_allergies/Assignment_1/training/label.pbtxt) sous `models/research/object_detection/tomate_training/data/`, Ecrire le contenu suivant:
+  
+  ```
+  item {
+  id: 1
+  name: 'tomate'
+}
+```
+Ce fichier est le **.config** de notre entrainement, on doit modifier quelque parties de ce fichier:
+  - totalité de class à détecter, dans notre cas, il est 1 seul class à détecter
+  - checkpoint path
+  - label_map_path
+  - input/output path
+  
+7. Créer `object_detection/tomate_training/ssd_mobilenet/train.sh`, 2crire le contenu suivant: 
+  
+  ```
+  mkdir -p logs/
+  now=$(date +"%Y%m%d_%H%M%S")
+  python ../../legacy/train.py \
+      --logtostderr \
+      --pipeline_config_path=ssd_mobilenet_v1.config \
+      --train_dir=train_logs 2>&1 | tee logs/train_$now.txt &
+ ```
+
  
  
 
