@@ -1,7 +1,7 @@
 # homework
 
 Ce test contient 2 parties:
-  [1. Test programmation: Coding assignment](## Coding assignment)
+  [1. Test programmation: Coding assignment](#coding-assignment)
   2. Projet sur vision par ordinateur: Tomato allergies
 ## Coding assignment
 
