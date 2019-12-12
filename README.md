@@ -1,7 +1,7 @@
 # homework
 
 Ce test contient 2 parties:
-  1. Test programmation: Coding assignment
+  [1. Test programmation: Coding assignment](## Coding assignment)
   2. Projet sur vision par ordinateur: Tomato allergies
 ## Coding assignment
 
@@ -154,9 +154,15 @@ Voici un exemple de résultat:
 
 
 3. Les graphes
+
+
 Pendant l'entraînement, la graphe de **losses**, le trait rouge représente loss d'entraînement, le trait bleu représente loss d'évaluation.
 
-[losses](Tomato_allergies/Assignment_1/images/losses.PNG)
+<p>
+  <img src="Tomato_allergies/Assignment_1/images/losses.PNG" alt="losses" height="600px"/>
+ </p> 
+
+
 
 
 Le **mAP** graph de l'évaluation (mAP: mean Average Precision) 
@@ -165,16 +171,20 @@ Le **mAP** graph de l'évaluation (mAP: mean Average Precision)
   <img src="Tomato_allergies/Assignment_1/images/mAP.PNG" alt="mAP" height="600px"/>
  </p> 
 
+
+
 Le **AR** graph de l'évaluation (AR: Average Recall)
 
  <p>
   <img src="Tomato_allergies/Assignment_1/images/AR.PNG" alt="mAP" height="600px"/>
  </p> 
  
+ 
+ 
  Le graph de **learning rate**
  
   <p>
-  <img src="Tomato_allergies/Assignment_1/images/learning_rate.PNG" alt="mAP" height="300px"/>
+  <img src="Tomato_allergies/Assignment_1/images/learning_rate.PNG" alt="mAP" height="500px"/>
  </p> 
  
  
@@ -191,3 +201,6 @@ Le **AR** graph de l'évaluation (AR: Average Recall)
  [How to train your own Object Detector with TensorFlow’s Object Detector API](https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9)
  
  
+
+## Release
+Le model entraîné est déposé sous [release](https://github.com/fengecho/homework/releases/tag/V1.0). Pour detecter l'image, il suffit télécharger seulement le fichier **frozen_inference_graph.pb**, mettre ce fichier dans un répertoire nommé model_exported, déposer ce répertoire dans le même répertoire que les fichiers`.py` qui servent à détecter 
