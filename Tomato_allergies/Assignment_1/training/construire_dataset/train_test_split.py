@@ -1,8 +1,12 @@
+"""
+Ce code faire référence à lien suivant https://blog.csdn.net/w5688414/article/details/78970874
+"""
+
 import os
 import random
 import time
 import shutil
-##############code faire référence à lien suivant https://blog.csdn.net/w5688414/article/details/78970874
+
 xmlfilepath='annotations'
 saveBasePath = "./train_val"
 
