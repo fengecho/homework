@@ -82,7 +82,7 @@ Ce fichier est le **.config** de notre entrainement, on doit modifier quelque pa
   - label_map_path
   - input/output path
   
-7. Créer `object_detection/tomate_training/ssd_mobilenet/train.sh`, 2crire le contenu suivant: 
+7. Créer `object_detection/tomate_training/ssd_mobilenet/train.sh`, Ecrire le contenu suivant: 
   
   ```
   mkdir -p logs/
@@ -92,7 +92,31 @@ Ce fichier est le **.config** de notre entrainement, on doit modifier quelque pa
       --pipeline_config_path=ssd_mobilenet_v1.config \
       --train_dir=train_logs 2>&1 | tee logs/train_$now.txt &
  ```
+ Pour lancer l'entraînement, taper `./train.sh`
+ 
+ 8. Créer `object_detection/tomate_training/ssd_mobilenet/eval.sh`, Ecrire le contenu suivant:
+ ```
+ mkdir -p eval_logs
+ python ../../legacy/eval.py \
+    --logtostderr \
+    --pipeline_config_path=ssd_mobilenet_v1.config \
+    --checkpoint_dir=train_logs \
+    --eval_dir=eval_logs &
+```
+Nous pouvons lancer validation en même temp que l'entraînement en tapant `./eval.sh`. Si vous avez plusieurs GPU, taper `CUDA_VISIBLE_DEVICES="1" ./eval.sh`
 
+9. Pour visualiser l'entraînement et validation, nous écrivons le contenu au dessous, visiter http://localhost:6006/ pour voir
+
+```
+## From models/research/object_detection/tomate_training/ssd_mobilenet/
+# visualiser l'entraînement
+tensorboard --logdir train_logs/  
+
+# visualiser la validation
+tensorboard --logdir eval_logs/ --port 6007
+
+#visualiser l'entraînement et la validation en même temps
+tensorboard --logdir .
  
  
 
