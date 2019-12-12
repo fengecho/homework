@@ -57,8 +57,6 @@ def detect_image(image_folder_path):
                 boxes, scores, classes, _ = sess.run(
                     [detection_boxes, detection_scores, detection_classes, num_detections],
                     feed_dict={image_tensor: np.expand_dims(img, 0)})
-        print(scores)
-        print("ok")
         # draw the results of the detection
         vis_util.visualize_boxes_and_labels_on_image_array(
             img,
