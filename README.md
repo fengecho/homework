@@ -181,9 +181,13 @@ Le **AR** graph de l'évaluation (AR: Average Recall)
  ### Référence
  
  [使用TensorFlow Object Detection API进行物体检测](https://lijiancheng0614.github.io/2017/08/22/2017_08_22_TensorFlow-Object-Detection-API/#%E5%87%86%E5%A4%87)
+ 
  [hand-detection-tutorial](https://github.com/jkjung-avt/hand-detection-tutorial)
+ 
  [Tensorflow Object Detection API](https://github.com/tensorflow/models/tree/6518c1c7711ef1fdbe925b3c5c71e62910374e3e/research/object_detection)
+ 
  [从零开始机器学习-3 教会你的AI识别特定的物体](https://www.jianshu.com/p/b9f84f5384ca)
+ 
  [How to train your own Object Detector with TensorFlow’s Object Detector API](https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9)
  
  
