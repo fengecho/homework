@@ -120,7 +120,7 @@ tensorboard --logdir .
 ```
  
  
-###Test
+### Test
 Pendant l'entraînement, Systeme enregistre plusieurs fois les fichiers de checkpoint, ils sont de type:
 - graph.pbtxt
 - model.ckpt-17538.data-00000-of-00001
@@ -131,7 +131,7 @@ Pendant l'entraînement, Systeme enregistre plusieurs fois les fichiers de check
 Pour obtenir un des checkpoint qu'on veut, il suffit de exécuter le fichier `export_inference_graph.py`, il va enregistrer le checkpoint souhaiter et générer un **frozen graph**
 
 1. Tester avec fonction has_tomatoes(image_path) 
-Mettre ensemble le fichier [run_tomatoes_detection.py](Tomato_allergies/Assignment_1/run_tomatoes_detection.py), [tomatoes_detection.py](Tomato_allergies/Assignment_1/tomatoes_detection.py) et le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported)  dans un répertoire. Les models entraînés sont dans le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported).
+ Mettre ensemble le fichier [run_tomatoes_detection.py](Tomato_allergies/Assignment_1/run_tomatoes_detection.py), [tomatoes_detection.py](Tomato_allergies/Assignment_1/tomatoes_detection.py) et le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported)  dans un répertoire. Les models entraînés sont dans le répertoire [model_exported](Tomato_allergies/Assignment_1/model_exported).
 Pour l'éxecuter, vous devez avoir préablement **sys**, **numpy**, **cv2**, **tesorflow** dans votre environement Python.
 Dans le fichier [tomatoes_detection.py](Tomato_allergies/Assignment_1/tomatoes_detection.py), vous trouver la fonction has_tomatoes(), aussi un seuil(par défault à 0.5) à scores pour filtrer les résultats. 
 Dans le fichier **Assignment_1**, remplir le image_path dans le fichier [run_tomatoes_detection.py](Tomato_allergies/Assignment_1/run_tomatoes_detection.py), puis taper command python run_tomatoes_detection.py au **terminal/commmand window**
@@ -140,7 +140,7 @@ Résultat: Si il a détecté les tomates dans l'image, il va retourner "True, th
 
 2. Tester avec le fichier [detect_image.py](Tomato_allergies/Assignment_1/detect_image.py)
 Ce fichier prendre le chemin d'un répertoire qui contient les images à detecter, il sort les images détectés avec les boundingboxes dessinés au dessus dans un répertoire [output_images](Tomato_allergies/Assignment_1/output_images).
-Pour l'éxecuter, vous devez avoir préablement **sys**, **numpy**, **cv2**, **tesorflow** dans votre environement Python, Object Detection API dois être paramétré dans le PYTHONPATH, pour paramétrer le PYTHONPATH:
+Pour l'éxecuter, vous devez avoir préablement **sys**, **numpy**, **cv2**, **tesorflow** dans votre environement Python, **Object Detection API** dois être paramétré dans le PYTHONPATH, pour paramétrer le PYTHONPATH:
 
 ```
 #From models/research 
@@ -152,3 +152,38 @@ Voici un exemple de résultat:
   <img src="Tomato_allergies/Assignment_1/output_images/5114115130b27c803a2d706510098bff.jpeg" alt="exemple" height="450px"/>
   </p> 
 
+
+3. Les graphes
+Pendant l'entraînement, la graphe de **losses**, le trait rouge représente loss d'entraînement, le trait bleu représente loss d'évaluation.
+
+[losses](Tomato_allergies/Assignment_1/images/losses.PNG)
+
+
+Le **mAP** graph de l'évaluation (mAP: mean Average Precision) 
+
+ <p>
+  <img src="Tomato_allergies/Assignment_1/images/mAP.PNG" alt="mAP" height="600px"/>
+ </p> 
+
+Le **AR** graph de l'évaluation (AR: Average Recall)
+
+ <p>
+  <img src="Tomato_allergies/Assignment_1/images/AR.PNG" alt="mAP" height="600px"/>
+ </p> 
+ 
+ Le graph de **learning rate**
+ 
+  <p>
+  <img src="Tomato_allergies/Assignment_1/images/learning_rate.PNG" alt="mAP" height="300px"/>
+ </p> 
+ 
+ 
+ ### Référence
+ 
+ [使用TensorFlow Object Detection API进行物体检测](https://lijiancheng0614.github.io/2017/08/22/2017_08_22_TensorFlow-Object-Detection-API/#%E5%87%86%E5%A4%87)
+ [hand-detection-tutorial](https://github.com/jkjung-avt/hand-detection-tutorial)
+ [Tensorflow Object Detection API](https://github.com/tensorflow/models/tree/6518c1c7711ef1fdbe925b3c5c71e62910374e3e/research/object_detection)
+ [从零开始机器学习-3 教会你的AI识别特定的物体](https://www.jianshu.com/p/b9f84f5384ca)
+ [How to train your own Object Detector with TensorFlow’s Object Detector API](https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9)
+ 
+ 
